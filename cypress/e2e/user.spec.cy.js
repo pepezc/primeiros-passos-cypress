@@ -2,16 +2,16 @@ import userData from '../fixtures/userData.json'
 import LoginPage from '../pages/loginPage'
 import DashboardPage from '../pages/dashboardPage'
 import MenuPage from '../pages/menuPage'
-import MyInfo from '../pages/myInfo'
+import MyInfoPage from '../pages/myInfoPage'
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
-const myInfo = new MyInfo()
+const myInfoPage = new MyInfoPage()
 
-describe('Orange HRM Tests', () => {
+describe('User Info Orange HRM Tests', () => {
 
-  it.only('User Info Update - Sucess', () => {
+  it('User Info Update - Sucess', () => {
 
     loginPage.accessLoginPage()
 
@@ -21,24 +21,11 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
-    myInfo.nameFill()
+    myInfoPage.fillPersonalDetails('Sven', 'Void', 'Lich')
 
-    myInfo.employeeIdFill()
+    myInfoPage.fillEmployeeDetails('Emp.ID', 'Other', '112233', '2050-09-11', 'Brazilian', 'Other')
 
-    myInfo.otherIdFill()
+    myInfoPage.saveForm()
 
-    myInfo.driversLicenseFill()
-
-    myInfo.nationalityFill()
-
-    myInfo.maritalStatusFill()
-
-  })
-  it('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorList.usernameField).type(userData.userFail.username)
-    cy.get(selectorList.passwordField).type(userData.userFail.password)
-    cy.get(selectorList.loginButton).click()
-    cy.get(selectorList.wrongCredentialAlert)
   })
 })
